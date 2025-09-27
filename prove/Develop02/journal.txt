@@ -1,0 +1,20 @@
+
+Date: 9/27
+Title: Chicken
+Prompt: What is up?
+Response: The sky
+Mood: good
+Rating: 4
+
+Miracle Title: Yes
+Miracle: Y
+
+Date: 9/26
+Title: Yesterday
+Prompt: What is up?
+Response: The head
+Mood: alright
+Rating: 4
+
+Miracle Title: no
+Miracle: N
