@@ -11,6 +11,8 @@ class Program
         Fraction fraction2 = new Fraction(5);
         Fraction fraction3 = new Fraction(5, 5);
 
-        
+        //This both gets and sets the numerator, then the denominator
+        fraction1.SetTop(fraction1.GetTop());
+        fraction1.SetBot(fraction1.GetBot());
     }
 }
