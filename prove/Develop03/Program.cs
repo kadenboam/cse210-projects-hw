@@ -27,6 +27,11 @@ class Program
         //Word in verse removal test
         _list1.DisplayScripture();
         Console.WriteLine(_list1.HideVerseWords(_word1.GetHiddenWords(), _scripture1.GetVerse()));
+
+        //Revealing words test
+        _word1.RevealWords();
+        _list1.DisplayScripture();
+        Console.WriteLine(_list1.HideVerseWords(_word1.GetHiddenWords(), _scripture1.GetVerse()));
         
     }
 }
