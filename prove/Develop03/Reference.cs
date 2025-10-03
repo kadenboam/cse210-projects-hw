@@ -6,6 +6,7 @@ public class Reference
     private string _numberOfVerse;
     private string _verse;
 
+
     //Two simple set ups depending on if it is a singular vers or multiple verses
     public Reference(string Book, int Chapter, string NumberOfVerse, string Verse)
     {
@@ -35,5 +36,10 @@ public class Reference
     {
         Console.WriteLine($"{_book} {_chapter}:{_numberOfVerse}");
         Console.WriteLine($"{_verse}");
+    }
+
+    public string GetVerse()
+    {
+        return _verse;
     }
 }
