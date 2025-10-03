@@ -51,6 +51,16 @@ public class Words
         _words.Add(changeWord);
     }
 
+    public List<string> GetWord()
+    {
+        return _words;
+    }
+
+    public List<string> GetHiddenWords()
+    {
+        return _hiddenWords;
+    }
+
     public void DisplayWords()
     {
         //Runs through each string in the words list

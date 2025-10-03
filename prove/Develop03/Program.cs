@@ -23,5 +23,10 @@ class Program
         //Word Removal Test
         _word1.HideWords();
         _word1.DisplayWords();
+
+        //Word in verse removal test
+        _list1.DisplayScripture();
+        Console.WriteLine(_list1.HideVerseWords(_word1.GetHiddenWords(), _scripture1.GetVerse()));
+        
     }
 }
