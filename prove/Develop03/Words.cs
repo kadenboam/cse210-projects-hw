@@ -31,6 +31,26 @@ public class Words
         }
     }
 
+    public void HideWords()
+    {
+        Random random = new Random();
+        //Used to randomly select words to remove. Took me a second to make it adaptable
+        int randomIndex = random.Next(0, _words.Count);
+        string changeWord = _words[randomIndex];
+        _hiddenWords.Add(changeWord);
+        _words.Remove(changeWord);
+    }
+    //A literal carbon copy that does the revese
+    public void RevealWords()
+    {
+        Random random = new Random();
+        //Used to randomly select words to reveal.
+        int randomIndex = random.Next(0, _hiddenWords.Count);
+        string changeWord = _hiddenWords[randomIndex];
+        _hiddenWords.Remove(changeWord);
+        _words.Add(changeWord);
+    }
+
     public void DisplayWords()
     {
         //Runs through each string in the words list

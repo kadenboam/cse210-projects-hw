@@ -16,8 +16,12 @@ class Program
         //Now we just display the scripture. Randomize the sellection later in Scripture.cs
         _list1.DisplayScripture();
         string verse = _list1._scripture[0].GetVerse();
-        
+
         Words _word1 = new Words(verse);
+        _word1.DisplayWords();
+
+        //Word Removal Test
+        _word1.HideWords();
         _word1.DisplayWords();
     }
 }
