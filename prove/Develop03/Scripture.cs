@@ -7,7 +7,7 @@ public class Scripture
     {
         foreach (string k in HiddenWords)
         {
-            bool check = Verse.Contains(k);
+            bool check = Verse.Contains($" {k} ");
             if (check == true)
             {
                 string underline = "";
@@ -17,7 +17,7 @@ public class Scripture
                     underline = underline + "_";
                 }
                 //I was able to learn to use this one thanks to https://www.geeksforgeeks.org/c-sharp/string-replace-method-c-sharp/ it was vital to remove words this way.
-                Verse = Verse.Replace(k, underline);
+                Verse = Verse.Replace($" {k} ", $" {underline} ");
             }
         }
         return Verse;
