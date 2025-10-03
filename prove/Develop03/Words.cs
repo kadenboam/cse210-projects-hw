@@ -17,16 +17,23 @@ public class Words
             
         }
         */
-        //After researching better alternatives
+        //After researching better alternatives, found one that can split strings into words (by splitting strings with certain characters)
         string[] array = Verse.Split(" ");
         foreach (string k in array)
         {
-            _words.Add(k);
+            //Found a solution to stop duplicates at https://stackoverflow.com/questions/3435089/how-to-check-if-object-already-exists-in-a-list , then modified it to my needs
+            bool check = _words.Contains(k);
+            if (check == false)
+            {
+                //This will only add the verses word if it is not already in the list.
+                _words.Add(k);
+            }
         }
     }
 
     public void DisplayWords()
     {
+        //Runs through each string in the words list
         foreach (string k in _words)
         {
             Console.Write($"{k} ");
