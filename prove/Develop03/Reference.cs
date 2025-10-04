@@ -35,7 +35,6 @@ public class Reference
     public void Display()
     {
         Console.WriteLine($"{_book} {_chapter}:{_numberOfVerse}");
-        
     }
 
     public string GetVerse()

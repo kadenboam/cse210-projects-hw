@@ -2,8 +2,8 @@ public class Words
 {
     //Took me a second to figure out, after reviewing prep4 program under the prep file
 
-    List<string> _words = new List<string>();
-    List<string> _hiddenWords = new List<string>();
+    private List<string> _words = new List<string>();
+    private List<string> _hiddenWords = new List<string>();
 
     //Ater evaluation, arrays were deamed better for this task: W3Schools example -> string[] words = { "Hello", "Goodbye", "What" };
     //string[] words = {}; Limitations were found with the array, Going back to lists
@@ -57,6 +57,7 @@ public class Words
         }
     }
 
+    //These simple get the list in case other parts of the program need to use them
     public List<string> GetWord()
     {
         return _words;
