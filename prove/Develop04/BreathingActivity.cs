@@ -25,10 +25,10 @@ public class BreathingActivity : Activities
         {
             Console.Clear();
             Console.WriteLine("Breath In...");
-            GetAnimation("#");
+            GetAnimation("B1");
             Console.Clear();
             Console.WriteLine("Breath Out...");
-            GetAnimation("#");
+            GetAnimation("B2");
         } while (currentTime < futureTime);
     }
 }

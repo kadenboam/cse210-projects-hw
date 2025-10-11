@@ -16,6 +16,9 @@ class Program
         //Initializing Reflection
         ReflectionActivity reflection = new ReflectionActivity(activities.StartMessage(), activities.EndMessage(), "This is a reflection activity, where you will be given a prompt and then followup questions to reflect on untill the session is done.");
 
+        //Initializing Listing
+        ListingActivity listing = new ListingActivity(activities.StartMessage(), activities.EndMessage(), "This is a listing activity, where you are given a prompt and have a certain amount of time to list everthing you can about the prompt.");
+
         //After some trouble getting animation time to work, seting the time differently was needed
         activities.SetDateTime(activities.GetTime());
 
@@ -38,12 +41,29 @@ class Program
             {
                 //Does the complete breathing activity with this function alone
                 breathing.BreathingDescription();
+                Console.WriteLine("");
+                Console.WriteLine(activities.EndMessage());
+                Console.WriteLine("");
+                activities.GetAnimation("$");
             }
             if (userInput == "2")
             {
                 Console.Clear();
                 //Does the complete reflection activity
                 reflection.ReflectionDescription();
+                Console.WriteLine("");
+                Console.WriteLine(activities.EndMessage());
+                Console.WriteLine("");
+                activities.GetAnimation("$");
+            }
+            if (userInput == "3")
+            {
+                Console.Clear();
+                listing.ListingDescription();
+                Console.WriteLine("");
+                Console.WriteLine(activities.EndMessage());
+                Console.WriteLine("");
+                activities.GetAnimation("$");
             }
 
         } while (userInput != "4");

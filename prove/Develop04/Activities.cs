@@ -49,6 +49,7 @@ public class Activities
         {
             string[] _animation = { "|", "/", "-", "\\" };
             DateTime pastTime = DateTime.Now;
+            _loop = 0;
             do
             {
                 Thread.Sleep(500);
@@ -64,11 +65,11 @@ public class Activities
         //Countdown Animation
         else if (animationType == "#")
         {
-            string[] _animation = { "5", "4", "3", "2", "1"};
+            string[] _animation = { "5", "4", "3", "2", "1" };
             int i = 0;
+            _loop = 0;
             while (i < 5)
             {
-
                 Console.Write("\b \b");
                 Console.Write(_animation[_loop]);
                 _loop += 1;
@@ -77,6 +78,41 @@ public class Activities
                 Thread.Sleep(1000);
                 //This only runs on 5 seconds now, but can be modified if needed
                 i += 1;
+            }
+        }
+
+        //For breathing in
+        else if (animationType == "B1")
+        {
+            int i = 0;
+            _loop = 0;
+            while (i < 5)
+            {
+                Console.Clear();
+                Console.WriteLine("Breath In...");
+                Console.WriteLine("");
+                int grow = 0;
+                while (i > grow) { Console.Write("■■■-"); grow += 1; }
+                Thread.Sleep(1000);
+                //This only runs on 5 seconds now, but can be modified if needed
+                i += 1;
+            }
+        }
+        //For breathing out
+        else if (animationType == "B2")
+        {
+            int i = 5;
+            _loop = 0;
+            while (i > 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Breath Out...");
+                Console.WriteLine("");
+                int grow = 0;
+                while (i > grow) { Console.Write("■■■-"); grow += 1; }
+                Thread.Sleep(1000);
+                //This only runs on 5 seconds now, but can be modified if needed
+                i -= 1;
             }
         }
     }
