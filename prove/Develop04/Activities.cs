@@ -1,14 +1,18 @@
+using System.Security.Cryptography.X509Certificates;
+
 public class Activities
 {
     //Initializing the values
-    private int _time;
+    protected int _time;
     private string[] _animation = { "|", "/", "-", "\\" };
     private int _loop = 0;
     protected string _startMessage;
     protected string _endMessage;
 
-    DateTime startTime;
-    DateTime futureTime;
+    public DateTime startTime;
+    public DateTime futureTime;
+
+    public DateTime currentTime;
     
     //Constructor for initializing variables
     public Activities(string startMessage, string endMessage)
@@ -22,11 +26,25 @@ public class Activities
     {
         _time = time;
     }
-    public void GetAnimation()
+
+    //This function was found to be needed for the breathing activity and so it was implemented
+    public int GetTime()
+    {
+        return _time;
+    }
+
+    //Seperate Setting time from GetAnimation was needed, so now they can initialize and run seperatly
+    public void SetDateTime(int time)
     {
         startTime = DateTime.Now;
-        futureTime = startTime.AddSeconds(_time);
-        DateTime currentTime = startTime;
+        futureTime = startTime.AddSeconds(time);
+        currentTime = startTime;
+    }
+
+    //Animation function for a simple loop pattern
+    public void GetAnimation()
+    {
+        DateTime pastTime = DateTime.Now;
         do
         {
             Thread.Sleep(500);
@@ -35,15 +53,16 @@ public class Activities
             _loop += 1;
             if (_loop > 3) { _loop = 0; }
             currentTime = DateTime.Now;
-        } while (currentTime < futureTime);
+            //This only runs on 5 seconds now, but can be modified if needed
+        } while (currentTime < pastTime.AddSeconds(5));
     }
 
-    public void StartMessage()
+    public string StartMessage()
     {
-        Console.WriteLine(_startMessage);
+        return _startMessage;
     }
-    public void EndMessage()
+    public string EndMessage()
     {
-        Console.WriteLine(_endMessage);
+        return _endMessage;
     }
 }
