@@ -10,13 +10,14 @@ public class Activities
     DateTime startTime;
     DateTime futureTime;
     
-
+    //Constructor for initializing variables
     public Activities(string startMessage, string endMessage)
     {
         _startMessage = startMessage;
         _endMessage = endMessage;
     }
 
+    //Void functions for doing things that are entirley in the Activities (this) class
     public void SetTime(int time)
     {
         _time = time;
@@ -35,5 +36,14 @@ public class Activities
             if (_loop > 3) { _loop = 0; }
             currentTime = DateTime.Now;
         } while (currentTime < futureTime);
+    }
+
+    public void StartMessage()
+    {
+        Console.WriteLine(_startMessage);
+    }
+    public void EndMessage()
+    {
+        Console.WriteLine(_endMessage);
     }
 }
