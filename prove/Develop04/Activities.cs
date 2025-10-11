@@ -42,19 +42,43 @@ public class Activities
     }
 
     //Animation function for a simple loop pattern
-    public void GetAnimation()
+    public void GetAnimation(string animationType)
     {
-        DateTime pastTime = DateTime.Now;
-        do
+        //Symbol animation
+        if (animationType == "$")
         {
-            Thread.Sleep(500);
-            Console.Write("\b \b");
-            Console.Write(_animation[_loop]);
-            _loop += 1;
-            if (_loop > 3) { _loop = 0; }
-            currentTime = DateTime.Now;
-            //This only runs on 5 seconds now, but can be modified if needed
-        } while (currentTime < pastTime.AddSeconds(5));
+            string[] _animation = { "|", "/", "-", "\\" };
+            DateTime pastTime = DateTime.Now;
+            do
+            {
+                Thread.Sleep(500);
+                Console.Write("\b \b");
+                Console.Write(_animation[_loop]);
+                _loop += 1;
+                if (_loop > 3) { _loop = 0; }
+                currentTime = DateTime.Now;
+                //This only runs on 5 seconds now, but can be modified if needed
+            } while (currentTime < pastTime.AddSeconds(5));
+        }
+
+        //Countdown Animation
+        else if (animationType == "#")
+        {
+            string[] _animation = { "5", "4", "3", "2", "1"};
+            int i = 0;
+            while (i < 5)
+            {
+
+                Console.Write("\b \b");
+                Console.Write(_animation[_loop]);
+                _loop += 1;
+                if (_loop > 4) { _loop = 0; }
+                currentTime = DateTime.Now;
+                Thread.Sleep(1000);
+                //This only runs on 5 seconds now, but can be modified if needed
+                i += 1;
+            }
+        }
     }
 
     public string StartMessage()

@@ -5,23 +5,51 @@ class Program
     {
         Console.WriteLine("Hello Develop04 World!");
         Console.WriteLine("");
-        Activities activities = new Activities("This Mindfullness activity will help you take time out of your day to relax and think. How much time (in seconds) would you like it to be? ", "You did great today. Comeback if you would like to do another session with us, but untill then, namaste.");
+        Activities activities = new Activities("This Mindfullness activity will help you take time out of your day to relax and think. ", "You did great! If you are ready for another session, lets begin! ");
         Console.Write(activities.StartMessage());
-        activities.SetTime(int.Parse(Console.ReadLine()));
-        activities.GetAnimation();
+        
 
         //Initializing Breathing
         BreathingActivity breathing = new BreathingActivity(activities.StartMessage(), activities.EndMessage(), "This is a breathing activity, you will take your time taking breaths in, then out during the time limit you have set. Clear your mind and focus as we begin the activity.");
         Console.WriteLine("");
 
+        //Initializing Reflection
+        ReflectionActivity reflection = new ReflectionActivity(activities.StartMessage(), activities.EndMessage(), "This is a reflection activity, where you will be given a prompt and then followup questions to reflect on untill the session is done.");
+
         //After some trouble getting animation time to work, seting the time differently was needed
         activities.SetDateTime(activities.GetTime());
 
-        //Does the complete breathing activity with this function alone
-        breathing.BreathingDescription(activities.GetTime());
+        //Loop for repetitive program
+        string userInput = "0";
+        do
+        {
+            //This is the menu for the different Activity selections
+            Console.Clear();
+            Console.WriteLine("Menu Options: ");
+            Console.WriteLine("  1. Start breathing activity");
+            Console.WriteLine("  2. Start reflection activity");
+            Console.WriteLine("  3. Start listing activity");
+            Console.WriteLine("  4. Quit");
+            Console.Write("Select a activity or quit: ");
+            userInput = Console.ReadLine();
+
+            //Does the different activities based on user choice
+            if (userInput == "1")
+            {
+                //Does the complete breathing activity with this function alone
+                breathing.BreathingDescription();
+            }
+            if (userInput == "2")
+            {
+                Console.Clear();
+                //Does the complete reflection activity
+                reflection.ReflectionDescription();
+            }
+
+        } while (userInput != "4");
 
         //Wrap up with concluding words
         Console.Clear();
-        Console.WriteLine(activities.EndMessage());
+        Console.WriteLine("You did great today. Comeback if you would like to do another session with us, but untill then, namaste.");
     }
 }

@@ -9,9 +9,12 @@ public class BreathingActivity : Activities
     }
     
     //Function originally for showing breathing description, complete breathing activity added to keep program.cs clear and clean
-    public void BreathingDescription(int time)
+    public void BreathingDescription()
     {
         Console.WriteLine(_breathingMessage);
+        Console.WriteLine("");
+        Console.WriteLine("How much time (in seconds) would you like it to be?");
+        int time = int.Parse(Console.ReadLine());
         Console.WriteLine("");
 
         //after the message, the time is set in case time has passed since the initial setting
@@ -22,10 +25,10 @@ public class BreathingActivity : Activities
         {
             Console.Clear();
             Console.WriteLine("Breath In...");
-            GetAnimation();
+            GetAnimation("#");
             Console.Clear();
             Console.WriteLine("Breath Out...");
-            GetAnimation();
+            GetAnimation("#");
         } while (currentTime < futureTime);
     }
 }
