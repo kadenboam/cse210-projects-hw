@@ -9,6 +9,11 @@ public class Activities
     protected string _startMessage;
     protected string _endMessage;
 
+    //For saving and loading:
+    public int breathingTime;
+    public int reflectionTime;
+    public int listingTime;
+
     public DateTime startTime;
     public DateTime futureTime;
 
@@ -93,6 +98,8 @@ public class Activities
                 Console.WriteLine("");
                 int grow = 0;
                 while (i > grow) { Console.Write("■■■-"); grow += 1; }
+                currentTime = DateTime.Now;
+
                 Thread.Sleep(1000);
                 //This only runs on 5 seconds now, but can be modified if needed
                 i += 1;
@@ -110,6 +117,8 @@ public class Activities
                 Console.WriteLine("");
                 int grow = 0;
                 while (i > grow) { Console.Write("■■■-"); grow += 1; }
+                currentTime = DateTime.Now;
+
                 Thread.Sleep(1000);
                 //This only runs on 5 seconds now, but can be modified if needed
                 i -= 1;

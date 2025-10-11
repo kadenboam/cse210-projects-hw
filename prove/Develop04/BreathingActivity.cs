@@ -9,7 +9,7 @@ public class BreathingActivity : Activities
     }
     
     //Function originally for showing breathing description, complete breathing activity added to keep program.cs clear and clean
-    public void BreathingDescription()
+    public int BreathingDescription()
     {
         Console.WriteLine(_breathingMessage);
         Console.WriteLine("");
@@ -30,5 +30,6 @@ public class BreathingActivity : Activities
             Console.WriteLine("Breath Out...");
             GetAnimation("B2");
         } while (currentTime < futureTime);
+        return time;
     }
 }

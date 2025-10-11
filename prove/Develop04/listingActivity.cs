@@ -16,7 +16,7 @@ public class ListingActivity : Activities
         _listingMessage = listingMessage;
     }
 
-    public void ListingDescription()
+    public int ListingDescription()
     {
         Console.WriteLine(_listingMessage);
         Console.WriteLine("");
@@ -42,6 +42,9 @@ public class ListingActivity : Activities
         Console.WriteLine($"You have listed {_userList.Count} items!");
         GetAnimation("$");
         Console.Clear();
+
+        //This was added for saving and loading perposes
+        return time;
     }
     public void SetUserList(string input)
     {

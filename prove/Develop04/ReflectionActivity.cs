@@ -31,7 +31,7 @@ public class ReflectionActivity : Activities
         _reflectionMessage = reflectionMessage;
     }
 
-    public void ReflectionDescription()
+    public int ReflectionDescription()
     {
         Console.WriteLine(_reflectionMessage);
         Console.WriteLine("");
@@ -53,6 +53,9 @@ public class ReflectionActivity : Activities
             loop += 1;
             if (loop > _questions.Count()) { loop = 0; }
         } while (currentTime < futureTime);
+
+        //This was added for saving and loading perposes
+        return time;
     }
     public int RandomePrompter()
     {
