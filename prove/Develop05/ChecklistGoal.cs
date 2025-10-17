@@ -3,13 +3,21 @@ public class ChecklistGoal : Goal {
     private int _completedTimes;
     private int _bonusPoints;
 
-    public override void SetGoal(int earnPoints, string goalName, string goalSummary)
+    public ChecklistGoal(int repeatTimes, int completedTimes, int bonusPoints, int earnPoints, int totalPoints, string goalName, string goalSummary) : base(earnPoints, totalPoints, goalName, goalSummary)
     {
-        //, int _repeatTimes, int _bonusPoints
+        _repeatTimes = repeatTimes;
+        _completedTimes = completedTimes;
+        _bonusPoints = bonusPoints;
     }
-    public override void AddPoints()
+
+    public void SetChecklistGoal()
     {
-        
+        SetGoal(_earnPoints, _goalName, _goalSummary);
+
+    }
+    public void AddBonusPoints()
+    {
+        AddPoints(_bonusPoints);
     }
     public override void DisplayGoal(string goalName, string goalSummary, int totalPoints)
     {
