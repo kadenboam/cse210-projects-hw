@@ -3,17 +3,22 @@ public class ChecklistGoal : Goal {
     private int _completedTimes;
     private int _bonusPoints;
 
-    public ChecklistGoal(int repeatTimes, int completedTimes, int bonusPoints, int earnPoints, int totalPoints, string goalName, string goalSummary) : base(earnPoints, totalPoints, goalName, goalSummary)
+    public ChecklistGoal(int repeatTimes, int bonusPoints, int earnPoints, int totalPoints, string goalName, string goalSummary) : base(earnPoints, totalPoints, goalName, goalSummary)
     {
         _repeatTimes = repeatTimes;
-        _completedTimes = completedTimes;
+        _completedTimes = 0;
         _bonusPoints = bonusPoints;
     }
 
     public void SetChecklistGoal()
     {
-        SetGoal(_earnPoints, _goalName, _goalSummary);
-
+        SetGoal();
+        Console.WriteLine("");
+        Console.Write("How many times should it be repeated? ");
+        _repeatTimes = CheckInt();
+        Console.WriteLine("");
+        Console.Write("How many extra points will you get? ");
+        _bonusPoints = CheckInt();
     }
     public void AddBonusPoints()
     {
