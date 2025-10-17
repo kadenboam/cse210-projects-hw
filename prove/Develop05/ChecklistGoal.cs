@@ -3,6 +3,10 @@ public class ChecklistGoal : Goal {
     private int _completedTimes;
     private int _bonusPoints;
 
+    //This is for knowing what class they are after pulling from a list in program
+    public string type = "c";
+
+    //Checklist Goal initializers
     public ChecklistGoal() { }
     public ChecklistGoal(int repeatTimes, int bonusPoints, int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary)
     {
@@ -11,6 +15,7 @@ public class ChecklistGoal : Goal {
         _bonusPoints = bonusPoints;
     }
 
+    //Used to set the checklistGoal
     public void SetChecklistGoal()
     {
         SetGoal();
@@ -25,8 +30,9 @@ public class ChecklistGoal : Goal {
     {
         AddPoints(_bonusPoints);
     }
-    public override void DisplayGoal(string goalName, string goalSummary, int totalPoints)
+    public override void DisplayGoal()
     {
-        Console.WriteLine($"{_completedTimes}");
+        Console.WriteLine("");
+        Console.WriteLine($"{_goalName}, {_goalSummary}, {_completedTimes}/{_repeatTimes}");
     }
 }

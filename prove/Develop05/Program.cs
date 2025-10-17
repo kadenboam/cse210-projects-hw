@@ -13,8 +13,62 @@ class Program
         {
             DisplayMenu();
             userInput = Console.ReadLine();
+
+            if (userInput == "1")
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Goal types: ");
+                Console.WriteLine(" 1. One and Done Goal");
+                Console.WriteLine(" 2. Forever Goal");
+                Console.WriteLine(" 2. Repeating Goal");
+                Console.Write("What kind of goal would you like to set? ");
+                userInput = Console.ReadLine();
+
+                //Different sections for setting the new goal
+                if (userInput == "1")
+                {
+                    SimpleGoal simpleGoal = new SimpleGoal();
+                    simpleGoal.SetSimpleGoal();
+                    GoalList.Add(simpleGoal);
+                }
+                else if (userInput == "2")
+                {
+                    EternalGoal eternalGoal = new EternalGoal();
+                    eternalGoal.SetEternalGoal();
+                    GoalList.Add(eternalGoal);
+                }
+                else if (userInput == "3")
+                {
+                    ChecklistGoal checklistGoal = new ChecklistGoal();
+                    checklistGoal.SetChecklistGoal();
+                    GoalList.Add(checklistGoal);
+                }
+                else { Console.WriteLine("Error, invalid input."); }
+                //Each is added to the list to keep track of later
+            }
+
+            else if (userInput == "2")
+            {
+                foreach (var goal in GoalList)
+                {
+                    goal.DisplayGoal();
+                }
+            }
+
+            else if (userInput == "3") { }
+
+            else if (userInput == "4") { }
+
+            else if (userInput == "5") { }
+
+            else if (userInput == "6") { }
+
+            else if (userInput == "7") { Console.WriteLine("Exiting the program..."); }
+            else { Console.WriteLine("Error, invalid input."); }
         } while (userInput != "7");
     }
+
+    //The menu options
     static void DisplayMenu()
     {
         Console.WriteLine("");
