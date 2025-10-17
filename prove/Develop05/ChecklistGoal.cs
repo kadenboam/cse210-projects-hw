@@ -3,7 +3,8 @@ public class ChecklistGoal : Goal {
     private int _completedTimes;
     private int _bonusPoints;
 
-    public ChecklistGoal(int repeatTimes, int bonusPoints, int earnPoints, int totalPoints, string goalName, string goalSummary) : base(earnPoints, totalPoints, goalName, goalSummary)
+    public ChecklistGoal() { }
+    public ChecklistGoal(int repeatTimes, int bonusPoints, int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary)
     {
         _repeatTimes = repeatTimes;
         _completedTimes = 0;
@@ -26,6 +27,6 @@ public class ChecklistGoal : Goal {
     }
     public override void DisplayGoal(string goalName, string goalSummary, int totalPoints)
     {
-        //, int repeatTimes, int completedTimes
+        Console.WriteLine($"{_completedTimes}");
     }
 }

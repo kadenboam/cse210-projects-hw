@@ -1,30 +1,33 @@
 using System.Globalization;
 using System.Numerics;
 
-public abstract class Goal {
+public abstract class Goal
+{
     protected int _earnPoints;
-    private int _totalPoints;
     protected string _goalName;
     protected string _goalSummary;
 
-    public Goal(int earnPoints, int totalPoints, string goalName, string goalSummary)
+    public Goal() { }
+
+    public Goal(int earnPoints, string goalName, string goalSummary)
     {
         _earnPoints = earnPoints;
-        _totalPoints = totalPoints;
         _goalName = goalName;
         _goalSummary = goalSummary;
     }
 
-    public void AddPoints()
+    public int AddPoints(int totalPoints)
     {
-        _totalPoints += _earnPoints;
+        totalPoints += _earnPoints;
+        return totalPoints;
     }
-    public void AddPoints(int bonusPoints)
+    public int AddPoints(int bonusPoints, int totalPoints)
     {
-        _totalPoints += _earnPoints;
-        _totalPoints += bonusPoints;
+        totalPoints += _earnPoints;
+        totalPoints += bonusPoints;
+        return totalPoints;
     }
-    
+
     public void SetGoal()
     {
         Console.WriteLine("");

@@ -1,7 +1,8 @@
 class SimpleGoal : Goal {
     private bool _isCompleted;
 
-    public SimpleGoal(int earnPoints, int totalPoints, string goalName, string goalSummary) : base(earnPoints, totalPoints, goalName, goalSummary)
+    public SimpleGoal() { }
+    public SimpleGoal(int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary)
     {
         _isCompleted = false;
     }
