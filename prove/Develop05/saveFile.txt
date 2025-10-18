@@ -4,3 +4,7 @@ $,Yearly Temple, Go to the temple each month for a year,2000
 %,Chores,Clean the house every day,20
 &,Brush Teeth,Brush teeth every night for a month,0,10,30,300
 &,Daily Reading,Read the scriptures every day of the week,0,100,7,1000
+1,DarkBlue,DarkGreen,DarkRed,DarkMagenta,DarkYellow,Gray,DarkGray,Blue,Green,Cyan,Red,Magenta,Yellow,White,DarkCyan
+2,
+3,Black,DarkBlue,DarkGreen,DarkRed,DarkMagenta,DarkYellow,Gray,DarkGray,Blue,Green,Cyan,Red,Magenta,Yellow,DarkCyan
+4,

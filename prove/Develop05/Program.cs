@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
-using System.IO; 
+using System.IO;
+using System.Drawing;
 
 class Program
 {
@@ -11,6 +12,9 @@ class Program
         List<EternalGoal> EternalGoalList = new List<EternalGoal>();
         List<ChecklistGoal> ChecklistGoalList = new List<ChecklistGoal>();
         List<SimpleGoal> SimpleGoalList = new List<SimpleGoal>();
+
+        //Makes the shop available
+        Shop shop = new Shop();
         string userInput = "0";
         do
         {
@@ -119,9 +123,46 @@ class Program
                         ChecklistGoalList.Add(checklistGoal);
                     }
                     if (parts[0] == "#") { totalPoints = int.Parse(parts[1]); }
+                    if (parts[0] == "1")
+                    {
+                        int skip = 1;
+                        foreach (var color in parts)
+                        {
+                            if (skip == 1) { skip -= 1; }
+                            else{shop._textColors.Add(color);}
+                        }
+                    }
+                    if (parts[0] == "2")
+                    {
+                        int skip = 1;
+                        foreach (var color in parts)
+                        {
+                            if (skip == 1) { skip -= 1; }
+                            else{shop._ownedTextColors.Add(color);}
+                        }
+                    }
+                    if (parts[0] == "3")
+                    {
+                        int skip = 1;
+                        foreach (var color in parts)
+                        {
+                            if (skip == 1) { skip -= 1; }
+                            else{shop._backgroundColors.Add(color);}
+                        }
+                    }
+                    if (parts[0] == "4")
+                    {
+                        int skip = 1;
+                        foreach (var color in parts)
+                        {
+                            if (skip == 1) { skip -= 1; }
+                            else{shop._ownedBackgroundColors.Add(color);}
+                        }
+                    }
                 }
             }
 
+            //Goal Achievment
             else if (userInput == "5")
             {
                 Console.WriteLine("");
@@ -185,7 +226,30 @@ class Program
                 }
             }
 
-            else if (userInput == "6") { }
+            //The shop for fun
+            else if (userInput == "6")
+            {
+                Console.WriteLine("");
+                Console.WriteLine("This is the Shop! the items you can buy are: ");
+                Console.WriteLine(" 1. Text Colors");
+                Console.WriteLine(" 2. Background Colors");
+                Console.WriteLine(" 3. Secret Goals!");
+                Console.WriteLine(" 4. Set Colors");
+                Console.WriteLine("Please select your desire (if you have enough point)! ");
+                userInput = Console.ReadLine();
+                if (userInput == "1") { totalPoints = shop.BuyTextColors(totalPoints); }
+                if (userInput == "2") { totalPoints = shop.BuyBackgroundColors(totalPoints); }
+                if (userInput == "3")
+                {
+                    if (totalPoints > 500)
+                    {
+                        EternalGoal eternalGoal = new EternalGoal(20, "Free Bee", "This Goal gives you 20 points each time you accomplish it, for free!");
+                        EternalGoalList.Add(eternalGoal);
+                    }
+                }
+                if (userInput == "4") { shop.SetColors(); }
+                if (userInput == "5") { Console.WriteLine("Error in choice"); }
+            }
 
             else if (userInput == "7") { Console.WriteLine("Exiting the program..."); }
             else { Console.WriteLine("Error, invalid input."); }
