@@ -5,6 +5,8 @@ using System.Drawing;
 
 class Program
 {
+    //To Go above and beyond, I added a Text and Background color, and Secret Goal in a shop that you can exchange points for. 
+    // Your purchases are also saved and loaded, and colors can be changed in the shop
     static void Main(string[] args)
     {
         int totalPoints = 0;
@@ -95,6 +97,29 @@ class Program
                     {
                         outputFile.WriteLine($"&,{goal.DisplayGoal(0)}");
                     }
+                    outputFile.Write("1,");
+                    foreach (var color in shop._textColors)
+                    {
+                        outputFile.Write($"{color},");
+                    }
+                    outputFile.WriteLine();
+                    outputFile.Write("2,");
+                    foreach (var color in shop._ownedTextColors)
+                    {
+                        outputFile.Write($"{color},");
+                    }
+                    outputFile.WriteLine();
+                    outputFile.Write("3,");
+                    foreach (var color in shop._backgroundColors)
+                    {
+                        outputFile.Write($"{color},");
+                    }
+                    outputFile.WriteLine();
+                    outputFile.Write("4,");
+                    foreach (var color in shop._ownedBackgroundColors)
+                    {
+                        outputFile.Write($"{color},");
+                    }
                 }
             }
 
@@ -109,22 +134,26 @@ class Program
                     string[] parts = line.Split(",");
                     if (parts[0] == "$")
                     {
-                        SimpleGoal simpleGoal = new SimpleGoal(int.Parse(parts[3]), parts[1], parts[2]);
+                        SimpleGoalList.Clear();
+                        SimpleGoal simpleGoal = new SimpleGoal(parts[1], int.Parse(parts[4]), parts[2], parts[3]);
                         SimpleGoalList.Add(simpleGoal);
                     }
                     if (parts[0] == "%")
                     {
+                        EternalGoalList.Clear();
                         EternalGoal eternalGoal = new EternalGoal(int.Parse(parts[3]), parts[1], parts[2]);
                         EternalGoalList.Add(eternalGoal);
                     }
                     if (parts[0] == "&")
                     {
+                        ChecklistGoalList.Clear();
                         ChecklistGoal checklistGoal = new ChecklistGoal(int.Parse(parts[4]), int.Parse(parts[3]), int.Parse(parts[5]), int.Parse(parts[6]), parts[1], parts[2]);
                         ChecklistGoalList.Add(checklistGoal);
                     }
                     if (parts[0] == "#") { totalPoints = int.Parse(parts[1]); }
                     if (parts[0] == "1")
                     {
+                        shop._textColors.Clear();
                         int skip = 1;
                         foreach (var color in parts)
                         {
@@ -134,6 +163,7 @@ class Program
                     }
                     if (parts[0] == "2")
                     {
+                        shop._ownedTextColors.Clear();
                         int skip = 1;
                         foreach (var color in parts)
                         {
@@ -143,6 +173,7 @@ class Program
                     }
                     if (parts[0] == "3")
                     {
+                        shop._backgroundColors.Clear();
                         int skip = 1;
                         foreach (var color in parts)
                         {
@@ -152,6 +183,7 @@ class Program
                     }
                     if (parts[0] == "4")
                     {
+                        shop._ownedBackgroundColors.Clear();
                         int skip = 1;
                         foreach (var color in parts)
                         {

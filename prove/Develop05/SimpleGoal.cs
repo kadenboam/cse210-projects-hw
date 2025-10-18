@@ -2,7 +2,11 @@ class SimpleGoal : Goal {
     private bool _isCompleted;
 
     public SimpleGoal() { }
-    public SimpleGoal(int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary) { } 
+    public SimpleGoal(string isCompleted, int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary)
+    {
+        if (isCompleted == "True") { _isCompleted = true; }
+        else { _isCompleted = false; }
+    } 
 
     //Sets basic goal parameters as well as if the goal is completed
     public void SetSimpleGoal()
@@ -26,7 +30,7 @@ class SimpleGoal : Goal {
             if (_isCompleted) { _xMark = "X"; }
             Console.WriteLine($"[{_xMark}] {_goalName} ({_goalSummary}) ");
         }
-        return $"{_goalName},{_goalSummary},{_earnPoints}";
+        return $"{_isCompleted},{_goalName},{_goalSummary},{_earnPoints}";
 
     }
 }
