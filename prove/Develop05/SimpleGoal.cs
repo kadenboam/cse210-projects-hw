@@ -26,7 +26,7 @@ class SimpleGoal : Goal {
             if (_isCompleted) { _xMark = "X"; }
             Console.WriteLine($"[{_xMark}] {_goalName} ({_goalSummary}) ");
         }
-        return $"{_goalName}, {_goalSummary},{_earnPoints}";
+        return $"{_goalName},{_goalSummary},{_earnPoints}";
 
     }
 }

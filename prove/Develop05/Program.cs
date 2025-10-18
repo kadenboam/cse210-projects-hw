@@ -14,6 +14,8 @@ class Program
         string userInput = "0";
         do
         {
+            Console.WriteLine("");
+            Console.WriteLine($"Total Points: {totalPoints}");
             DisplayMenu();
             userInput = Console.ReadLine();
 
@@ -69,7 +71,30 @@ class Program
                 }
             }
 
+            //Saving Option
             else if (userInput == "3")
+            {
+                string filename = "saveFile.txt";
+
+                using (StreamWriter outputFile = new StreamWriter(filename))
+                {
+                    foreach (var goal in SimpleGoalList)
+                    {
+                        outputFile.WriteLine($"$,{goal.DisplayGoal(0)}");
+                    }
+                    foreach (var goal in EternalGoalList)
+                    {
+                        outputFile.WriteLine($"%,{goal.DisplayGoal(0)}");
+                    }
+                    foreach (var goal in ChecklistGoalList)
+                    {
+                        outputFile.WriteLine($"&,{goal.DisplayGoal(0)}");
+                    }
+                }
+            }
+
+            //Loading Option
+            else if (userInput == "4")
             {
                 string filename = "saveFile.txt";
                 string[] lines = System.IO.File.ReadAllLines(filename);
@@ -89,29 +114,8 @@ class Program
                     }
                     if (parts[0] == "&")
                     {
-                        ChecklistGoal checklistGoal = new ChecklistGoal(int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6]), int.Parse(parts[3]), parts[1], parts[2]);
+                        ChecklistGoal checklistGoal = new ChecklistGoal(int.Parse(parts[4]), int.Parse(parts[3]), int.Parse(parts[5]), int.Parse(parts[6]), parts[1], parts[2]);
                         ChecklistGoalList.Add(checklistGoal);
-                    }
-                }
-            }
-
-            else if (userInput == "4")
-            {
-                string filename = "saveFile.txt";
-
-                using (StreamWriter outputFile = new StreamWriter(filename))
-                {
-                    foreach (var goal in SimpleGoalList)
-                    {
-                        outputFile.WriteLine($"$,{goal.DisplayGoal(0)}");
-                    }
-                    foreach (var goal in EternalGoalList)
-                    {
-                        outputFile.WriteLine($"%,{goal.DisplayGoal(0)}");
-                    }
-                    foreach (var goal in ChecklistGoalList)
-                    {
-                        outputFile.WriteLine($"&,{goal.DisplayGoal(0)}");
                     }
                 }
             }
@@ -140,36 +144,39 @@ class Program
                 }
                 Console.Write("Which goal have you accomplished? ");
                 int userIntInput = EternalGoalList[0].CheckInt() - 1;
-
+                Console.WriteLine(userIntInput);
                 //Simple Goal completion
-                if (userIntInput > SimpleGoalList.Count() + 1)
+                if (userIntInput > SimpleGoalList.Count())
                 {
-                    userIntInput -= SimpleGoalList.Count() + 1;
+                    userIntInput -= SimpleGoalList.Count();
+                    Console.WriteLine(userIntInput);
+                    //Eternal Goal completion
+                    if (userIntInput > EternalGoalList.Count())
+                    {
+                        userIntInput -= EternalGoalList.Count();
+                        Console.WriteLine(userIntInput);
+                        //Checklist Goal completion
+                        if (userIntInput > ChecklistGoalList.Count())
+                        {
+                            Console.WriteLine("Error");
+                        }
+                        else
+                        {
+                            ChecklistGoalList[userIntInput].AddPoints(totalPoints);
+                            Console.WriteLine("Sucess 3");
+                        }
+                    }
+                    else if (userIntInput <= EternalGoalList.Count())
+                    {
+                        EternalGoalList[userIntInput].AddPoints(totalPoints);
+                        Console.WriteLine("Sucess 2");
+                    }
                 }
                 else if (userIntInput <= SimpleGoalList.Count())
                 {
-                    if (SimpleGoalList[userIntInput].GetXMark() == " ") { SimpleGoalList[userIntInput].AddPoints(totalPoints); }
+                    if (SimpleGoalList[userIntInput].GetXMark() == " ") { totalPoints = SimpleGoalList[userIntInput].AddPoints(totalPoints); }
                     SimpleGoalList[userIntInput].SetCompleted();
-                }
-
-                //Eternal Goal completion
-                if (userIntInput > EternalGoalList.Count() + 1)
-                {
-                    userIntInput -= EternalGoalList.Count() + 1;
-                }
-                else if (userIntInput <= EternalGoalList.Count())
-                {
-                    EternalGoalList[userIntInput].AddPoints(totalPoints);
-                }
-
-                //Checklist Goal completion
-                if (userIntInput > ChecklistGoalList.Count() + 1)
-                {
-                    Console.WriteLine("Error");
-                }
-                else
-                {
-                    ChecklistGoalList[userIntInput].AddPoints(totalPoints);
+                    Console.WriteLine("Sucess");
                 }
             }
 

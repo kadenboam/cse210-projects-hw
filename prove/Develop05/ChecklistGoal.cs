@@ -47,6 +47,6 @@ public class ChecklistGoal : Goal {
             if (_completedTimes >= _repeatTimes) { _xMark = "X"; }
             Console.WriteLine($"[{xMark}] {_goalName} ({_goalSummary}) {_completedTimes}/{_repeatTimes}");
         }
-        return $"{_goalName}, {_goalSummary},{_completedTimes},{_repeatTimes},{_bonusPoints},{_earnPoints}";
+        return $"{_goalName},{_goalSummary},{_completedTimes},{_repeatTimes},{_bonusPoints},{_earnPoints}";
     }
 }
