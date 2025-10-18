@@ -78,6 +78,7 @@ class Program
 
                 using (StreamWriter outputFile = new StreamWriter(filename))
                 {
+                    outputFile.WriteLine($"#,{totalPoints}");
                     foreach (var goal in SimpleGoalList)
                     {
                         outputFile.WriteLine($"$,{goal.DisplayGoal(0)}");
@@ -117,6 +118,7 @@ class Program
                         ChecklistGoal checklistGoal = new ChecklistGoal(int.Parse(parts[4]), int.Parse(parts[3]), int.Parse(parts[5]), int.Parse(parts[6]), parts[1], parts[2]);
                         ChecklistGoalList.Add(checklistGoal);
                     }
+                    if (parts[0] == "#") { totalPoints = int.Parse(parts[1]); }
                 }
             }
 
@@ -143,7 +145,7 @@ class Program
                     goal.DisplayGoal(1);
                 }
                 Console.Write("Which goal have you accomplished? ");
-                int userIntInput = EternalGoalList[0].CheckInt() - 1;
+                int userIntInput = EternalGoalList[0].CheckInt();
                 Console.WriteLine(userIntInput);
                 //Simple Goal completion
                 if (userIntInput > SimpleGoalList.Count())
@@ -162,18 +164,21 @@ class Program
                         }
                         else
                         {
-                            ChecklistGoalList[userIntInput].AddPoints(totalPoints);
+                            userIntInput -= 1;
+                            totalPoints = ChecklistGoalList[userIntInput].AddPoints(totalPoints);
                             Console.WriteLine("Sucess 3");
                         }
                     }
                     else if (userIntInput <= EternalGoalList.Count())
                     {
-                        EternalGoalList[userIntInput].AddPoints(totalPoints);
+                        userIntInput -= 1;
+                        totalPoints = EternalGoalList[userIntInput].AddPoints(totalPoints);
                         Console.WriteLine("Sucess 2");
                     }
                 }
                 else if (userIntInput <= SimpleGoalList.Count())
                 {
+                    userIntInput -= 1;
                     if (SimpleGoalList[userIntInput].GetXMark() == " ") { totalPoints = SimpleGoalList[userIntInput].AddPoints(totalPoints); }
                     SimpleGoalList[userIntInput].SetCompleted();
                     Console.WriteLine("Sucess");

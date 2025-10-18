@@ -1,3 +1,4 @@
+#,20
 $,Marathon,Run a marathon at the end of the year,2000
 $,Yearly Temple, Go to the temple each month for a year,2000
 %,Chores,Clean the house every day,20
