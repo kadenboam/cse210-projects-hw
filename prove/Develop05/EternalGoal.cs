@@ -1,9 +1,6 @@
 class EternalGoal : Goal{
     //All of the values needed for this class are already in Goal class
 
-    //This is for knowing what class they are after pulling from a list in program
-    public string type = "e";
-
     public EternalGoal() { }
     public EternalGoal(int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary) { }
 
@@ -11,9 +8,18 @@ class EternalGoal : Goal{
     {
         SetGoal();
     }
-    public override void DisplayGoal()
+    public override int AddPoints(int totalPoints)
     {
-        Console.WriteLine("");
-        Console.WriteLine($"{_goalName}, {_goalSummary}");
+        totalPoints += _earnPoints;
+        return totalPoints;
+    }
+    public override string DisplayGoal(int consoleWrite)
+    {
+        if (consoleWrite == 1)
+        {
+            Console.WriteLine($"[ ] {_goalName} ({_goalSummary})");
+        }
+        return $"{_goalName}, {_goalSummary},{_earnPoints}";
+
     }
 }

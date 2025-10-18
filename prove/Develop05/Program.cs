@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
+using System.IO; 
 
 class Program
 {
@@ -7,7 +8,9 @@ class Program
     {
         int totalPoints = 0;
         //totalPoints = classInstanceName.AddPoints(totalPoints);
-        List<Goal> GoalList = new List<Goal>();
+        List<EternalGoal> EternalGoalList = new List<EternalGoal>();
+        List<ChecklistGoal> ChecklistGoalList = new List<ChecklistGoal>();
+        List<SimpleGoal> SimpleGoalList = new List<SimpleGoal>();
         string userInput = "0";
         do
         {
@@ -29,19 +32,19 @@ class Program
                 {
                     SimpleGoal simpleGoal = new SimpleGoal();
                     simpleGoal.SetSimpleGoal();
-                    GoalList.Add(simpleGoal);
+                    SimpleGoalList.Add(simpleGoal);
                 }
                 else if (userInput == "2")
                 {
                     EternalGoal eternalGoal = new EternalGoal();
                     eternalGoal.SetEternalGoal();
-                    GoalList.Add(eternalGoal);
+                    EternalGoalList.Add(eternalGoal);
                 }
                 else if (userInput == "3")
                 {
                     ChecklistGoal checklistGoal = new ChecklistGoal();
                     checklistGoal.SetChecklistGoal();
-                    GoalList.Add(checklistGoal);
+                    ChecklistGoalList.Add(checklistGoal);
                 }
                 else { Console.WriteLine("Error, invalid input."); }
                 //Each is added to the list to keep track of later
@@ -49,17 +52,126 @@ class Program
 
             else if (userInput == "2")
             {
-                foreach (var goal in GoalList)
+                foreach (var goal in SimpleGoalList)
                 {
-                    goal.DisplayGoal();
+                    Console.WriteLine("");
+                    goal.DisplayGoal(1);
+                }
+                foreach (var goal in EternalGoalList)
+                {
+                    Console.WriteLine("");
+                    goal.DisplayGoal(1);
+                }
+                foreach (var goal in ChecklistGoalList)
+                {
+                    Console.WriteLine("");
+                    goal.DisplayGoal(1);
                 }
             }
 
-            else if (userInput == "3") { }
+            else if (userInput == "3")
+            {
+                string filename = "saveFile.txt";
+                string[] lines = System.IO.File.ReadAllLines(filename);
 
-            else if (userInput == "4") { }
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(",");
+                    if (parts[0] == "$")
+                    {
+                        SimpleGoal simpleGoal = new SimpleGoal(int.Parse(parts[3]), parts[1], parts[2]);
+                        SimpleGoalList.Add(simpleGoal);
+                    }
+                    if (parts[0] == "%")
+                    {
+                        EternalGoal eternalGoal = new EternalGoal(int.Parse(parts[3]), parts[1], parts[2]);
+                        EternalGoalList.Add(eternalGoal);
+                    }
+                    if (parts[0] == "&")
+                    {
+                        ChecklistGoal checklistGoal = new ChecklistGoal(int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6]), int.Parse(parts[3]), parts[1], parts[2]);
+                        ChecklistGoalList.Add(checklistGoal);
+                    }
+                }
+            }
 
-            else if (userInput == "5") { }
+            else if (userInput == "4")
+            {
+                string filename = "saveFile.txt";
+
+                using (StreamWriter outputFile = new StreamWriter(filename))
+                {
+                    foreach (var goal in SimpleGoalList)
+                    {
+                        outputFile.WriteLine($"$,{goal.DisplayGoal(0)}");
+                    }
+                    foreach (var goal in EternalGoalList)
+                    {
+                        outputFile.WriteLine($"%,{goal.DisplayGoal(0)}");
+                    }
+                    foreach (var goal in ChecklistGoalList)
+                    {
+                        outputFile.WriteLine($"&,{goal.DisplayGoal(0)}");
+                    }
+                }
+            }
+
+            else if (userInput == "5")
+            {
+                Console.WriteLine("");
+                int i = 1;
+                foreach (var goal in SimpleGoalList)
+                {
+                    Console.Write($"{i}. ");
+                    i += 1;
+                    goal.DisplayGoal(1);
+                }
+                foreach (var goal in EternalGoalList)
+                {
+                    Console.Write($"{i}. ");
+                    i += 1;
+                    goal.DisplayGoal(1);
+                }
+                foreach (var goal in ChecklistGoalList)
+                {
+                    Console.Write($"{i}. ");
+                    i += 1;
+                    goal.DisplayGoal(1);
+                }
+                Console.Write("Which goal have you accomplished? ");
+                int userIntInput = EternalGoalList[0].CheckInt() - 1;
+
+                //Simple Goal completion
+                if (userIntInput > SimpleGoalList.Count() + 1)
+                {
+                    userIntInput -= SimpleGoalList.Count() + 1;
+                }
+                else if (userIntInput <= SimpleGoalList.Count())
+                {
+                    if (SimpleGoalList[userIntInput].GetXMark() == " ") { SimpleGoalList[userIntInput].AddPoints(totalPoints); }
+                    SimpleGoalList[userIntInput].SetCompleted();
+                }
+
+                //Eternal Goal completion
+                if (userIntInput > EternalGoalList.Count() + 1)
+                {
+                    userIntInput -= EternalGoalList.Count() + 1;
+                }
+                else if (userIntInput <= EternalGoalList.Count())
+                {
+                    EternalGoalList[userIntInput].AddPoints(totalPoints);
+                }
+
+                //Checklist Goal completion
+                if (userIntInput > ChecklistGoalList.Count() + 1)
+                {
+                    Console.WriteLine("Error");
+                }
+                else
+                {
+                    ChecklistGoalList[userIntInput].AddPoints(totalPoints);
+                }
+            }
 
             else if (userInput == "6") { }
 

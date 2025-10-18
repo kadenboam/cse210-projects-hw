@@ -1,0 +1,4 @@
+$, Yes,  okauy,200
+$,Yearly Temple, Go to the temple each month for a year,200
+%, scriptures,  everyday,20
+&,  maybe,  not,300,1,30,5

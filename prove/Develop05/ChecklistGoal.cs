@@ -3,15 +3,13 @@ public class ChecklistGoal : Goal {
     private int _completedTimes;
     private int _bonusPoints;
 
-    //This is for knowing what class they are after pulling from a list in program
-    public string type = "c";
 
     //Checklist Goal initializers
     public ChecklistGoal() { }
-    public ChecklistGoal(int repeatTimes, int bonusPoints, int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary)
+    public ChecklistGoal(int repeatTimes, int completedTimes, int bonusPoints, int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary)
     {
         _repeatTimes = repeatTimes;
-        _completedTimes = 0;
+        _completedTimes = completedTimes;
         _bonusPoints = bonusPoints;
     }
 
@@ -22,17 +20,33 @@ public class ChecklistGoal : Goal {
         Console.WriteLine("");
         Console.Write("How many times should it be repeated? ");
         _repeatTimes = CheckInt();
-        Console.WriteLine("");
         Console.Write("How many extra points will you get? ");
         _bonusPoints = CheckInt();
     }
-    public void AddBonusPoints()
+    public override int AddPoints(int totalPoints)
     {
-        AddPoints(_bonusPoints);
+        if (_completedTimes < (_repeatTimes - 1))
+        {
+            totalPoints += _earnPoints;
+            _completedTimes += 1;
+        }
+        else if (_completedTimes < _repeatTimes)
+        {
+            totalPoints += _earnPoints;
+            totalPoints += _bonusPoints;
+        }
+        Console.WriteLine($"Congragulations! You now have {totalPoints}! ");
+        return totalPoints;
     }
-    public override void DisplayGoal()
+
+    public override string DisplayGoal(int consoleWrite)
     {
-        Console.WriteLine("");
-        Console.WriteLine($"{_goalName}, {_goalSummary}, {_completedTimes}/{_repeatTimes}");
+        if (consoleWrite == 1)
+        {
+            string xMark = " ";
+            if (_completedTimes >= _repeatTimes) { _xMark = "X"; }
+            Console.WriteLine($"[{xMark}] {_goalName} ({_goalSummary}) {_completedTimes}/{_repeatTimes}");
+        }
+        return $"{_goalName}, {_goalSummary},{_completedTimes},{_repeatTimes},{_bonusPoints},{_earnPoints}";
     }
 }

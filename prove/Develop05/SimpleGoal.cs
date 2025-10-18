@@ -1,31 +1,32 @@
 class SimpleGoal : Goal {
     private bool _isCompleted;
 
-    //This is for knowing what class they are after pulling from a list in program
-    public string type = "s";
-
     public SimpleGoal() { }
-    public SimpleGoal(int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary)
-    {
-        _isCompleted = false;
-    }
+    public SimpleGoal(int earnPoints, string goalName, string goalSummary) : base(earnPoints, goalName, goalSummary) { } 
 
     //Sets basic goal parameters as well as if the goal is completed
     public void SetSimpleGoal()
     {
         SetGoal();
-        _isCompleted = false;
     }
-    public void SetSimpleGoal(bool check)
+
+    public void SetCompleted()
     {
-        SetGoal();
-        _isCompleted = check;
+        _isCompleted = true;
     }
-    public override void DisplayGoal()
+    public override int AddPoints(int totalPoints)
     {
-        Console.WriteLine("");
-        string xMark = " ";
-        if (_isCompleted) { xMark = "X"; }
-        Console.WriteLine($"[{xMark}] {_goalName}, {_goalSummary} ");
+        totalPoints += _earnPoints;
+        return totalPoints;
+    }
+
+    public override string DisplayGoal(int consoleWrite)
+    {
+        if (consoleWrite == 1){
+            if (_isCompleted) { _xMark = "X"; }
+            Console.WriteLine($"[{_xMark}] {_goalName} ({_goalSummary}) ");
+        }
+        return $"{_goalName}, {_goalSummary},{_earnPoints}";
+
     }
 }
