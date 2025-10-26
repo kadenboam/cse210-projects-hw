@@ -2,7 +2,7 @@ class Customer {
     private string _name;
     Address _address = new Address();
 
-    public Customer(string name, string streetAddress, string city, string stateOrProvince, string country)
+    public void SetCustomer(string name, string streetAddress, string city, string stateOrProvince, string country)
     {
         _name = name;
         _address.SetAddress(streetAddress, city, stateOrProvince, country);
