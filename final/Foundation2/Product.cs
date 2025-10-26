@@ -13,7 +13,7 @@ class Product {
     }
     public string GetProduct()
     {
-        return $"Product Name:{_name}, Product Id:{_productId}";
+        return $"Product Name: {_name}, Product Id: {_productId}";
     }
     public double GetCost()
     {

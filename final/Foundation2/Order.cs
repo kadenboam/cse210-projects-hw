@@ -1,15 +1,17 @@
+using Microsoft.VisualBasic;
+
 class Order {
     private List<Product> product = new List<Product>();
-    Customer customer = new Customer();
+    Customer _customer = new Customer();
 
-    public Order(string name, string streetAddress, string city, string stateOrProvince, string country)
+    public Order(Customer customer)
     {
-        customer.SetCustomer(name, streetAddress, city, stateOrProvince, country);
+        _customer = customer;
     }
 
-    public void AddProduct(string name, string productId, double pricePerUnit, int quantity)
+    public void AddProduct(Product newproduct)
     {
-        product.Add(new Product(name, productId, pricePerUnit, quantity));
+        product.Add(newproduct);
     }
 
     public double CalculateTotal()
@@ -19,6 +21,7 @@ class Order {
         {
             total += price.GetCost();
         }
+        if (_customer.IsUSA()) { total -= 5.00; }
         return total;
     }
     public void PackageLabel()
@@ -27,9 +30,11 @@ class Order {
         {
             Console.WriteLine(label.GetProduct());
         }
+        Console.WriteLine();
     }
     public void ShippingLabel()
     {
-        Console.WriteLine(customer.GetCustomer());
+        Console.WriteLine(_customer.GetCustomer());
+        Console.WriteLine();
     }
 }

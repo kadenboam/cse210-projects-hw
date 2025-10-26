@@ -4,7 +4,8 @@ class Address {
     private string _stateOrProvince;
     private string _country;
 
-    public void SetAddress(string streetAddress, string city, string stateOrProvince, string country)
+    public Address(){}
+    public Address(string streetAddress, string city, string stateOrProvince, string country)
     {
         _streetAddress = streetAddress;
         _city = city;
