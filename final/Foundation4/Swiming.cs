@@ -12,12 +12,12 @@ class Swiming : Activities{
     }
     public override double Speed()
     {
-        return (_numberOfLaps * 50 / _minutes) * 60;
+        return (Distance()/ _minutes) * 60;
 
     }
     public override double Pace()
     {
-        return _minutes / (_numberOfLaps * 50);
+        return _minutes / (Distance());
         //or return minutes / Distance();
     }
 }
