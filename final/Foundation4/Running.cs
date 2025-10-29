@@ -6,16 +6,24 @@ class Running : Activities {
         _distance = distance;
     }
 
-    public override double Distance()
+    public override double Distance(int dontWrite)
     {
+        if (dontWrite != 1)
+        {
+            Console.WriteLine($"The Running distance is: {_distance} Km");
+        }
         return _distance;
     }
     public override double Speed()
     {
-        return (Distance()/_minutes) * 60;
+        double speed = (Distance(1) / _minutes) * 60;
+        Console.WriteLine($"The Running Speed is: {speed} Km/hour");
+        return speed;
     }
     public override double Pace()
     {
-        return _minutes/Distance();
+        double pace = _minutes/Distance(1);
+        Console.WriteLine($"The Running pace is: {pace} minutes per Km");
+        return pace;
     }
 }

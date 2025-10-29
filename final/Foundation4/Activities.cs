@@ -10,11 +10,15 @@ abstract class Activities {
         _minutes = minutes;
     }
 
-    public abstract double Distance();
+    public abstract double Distance(int dontWrite);
     public abstract double Speed();
     public abstract double Pace();
     public string GetSummary()
     {
-        return $" ";
+        Distance(0);
+        Speed();
+        Pace();
+        Console.WriteLine();
+        return $"";
     }
 }

@@ -8,16 +8,25 @@ class StationaryBicycle : Activities {
         _speed = speed;
     }
 
-    public override double Distance()
+    public override double Distance(int dontWrite)
     {
-        return _speed * _minutes;
+        double distance = _speed * _minutes;
+        if (dontWrite != 1)
+        {
+            Console.WriteLine($"The Biking distance is: {distance} Km");
+        }
+        return distance;
     }
     public override double Speed()
     {
+        Console.WriteLine($"The Biking speed is: {_speed} Km/hour");
         return _speed;
     }
     public override double Pace()
     {
-        return _minutes / Distance();
+        double pace = _minutes / Distance(1);
+        Console.WriteLine($"The Biking pace is: {pace} minutes per Km");
+
+        return pace;
     }
 }

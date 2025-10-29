@@ -6,18 +6,26 @@ class Swiming : Activities{
         _numberOfLaps = numberOfLaps;
     }
 
-    public override double Distance()
+    public override double Distance(int dontWrite)
     {
-        return _numberOfLaps * 50 / 1000;
+        double distance = _numberOfLaps * 50 / 1000;
+        if (dontWrite != 1)
+        {
+            Console.WriteLine($"The Swiming distance is: {distance} Km");
+        }  
+        return distance;
     }
     public override double Speed()
     {
-        return (Distance()/ _minutes) * 60;
-
+        double speed = (Distance(1) / _minutes) * 60;
+        Console.WriteLine($"The Swiming speed is: {speed} Km/hour");
+        return speed;
     }
     public override double Pace()
     {
-        return _minutes / (Distance());
+        double pace = _minutes / (Distance(1));
+        Console.WriteLine($"The Swiming pace is: {pace} minutes per Km");
+        return pace;
         //or return minutes / Distance();
     }
 }
