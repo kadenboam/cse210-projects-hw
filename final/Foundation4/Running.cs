@@ -6,16 +6,16 @@ class Running : Activities {
         _distance = distance;
     }
 
-    public override double Distance(double distance)
+    public override double Distance()
     {
         return _distance;
     }
-    public override double Speed(double minutes)
+    public override double Speed()
     {
-        return (Distance(_distance)/minutes) * 60;
+        return (Distance()/_minutes) * 60;
     }
-    public override double Pace(double _minutes)
+    public override double Pace()
     {
-        return _minutes/Distance(_distance);
+        return _minutes/Distance();
     }
 }

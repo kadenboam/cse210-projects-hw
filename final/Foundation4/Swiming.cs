@@ -6,18 +6,18 @@ class Swiming : Activities{
         _numberOfLaps = numberOfLaps;
     }
 
-    public override double Distance(double numberOfLaps)
+    public override double Distance()
     {
         return _numberOfLaps * 50 / 1000;
     }
-    public override double Speed(double minutes)
+    public override double Speed()
     {
-        return (_numberOfLaps * 50 / minutes) * 60;
+        return (_numberOfLaps * 50 / _minutes) * 60;
 
     }
-    public override double Pace(double minutes)
+    public override double Pace()
     {
-        return minutes / (_numberOfLaps * 50);
+        return _minutes / (_numberOfLaps * 50);
         //or return minutes / Distance();
     }
 }

@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 abstract class Activities {
     protected string _date;
     protected double _minutes;
@@ -8,9 +10,9 @@ abstract class Activities {
         _minutes = minutes;
     }
 
-    public abstract double Distance(double theDistance);
-    public abstract double Speed(double minutes);
-    public abstract double Pace(double minutes);
+    public abstract double Distance();
+    public abstract double Speed();
+    public abstract double Pace();
     public string GetSummary()
     {
         return $" ";

@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 class StationaryBicycle : Activities {
     private double _speed;
 
@@ -6,16 +8,16 @@ class StationaryBicycle : Activities {
         _speed = speed;
     }
 
-    public override double Distance(double minutes)
+    public override double Distance()
     {
-        return _speed * minutes;
+        return _speed * _minutes;
     }
-    public override double Speed(double _minutes)
+    public override double Speed()
     {
         return _speed;
     }
-    public override double Pace(double minutes)
+    public override double Pace()
     {
-        return minutes / Distance(minutes);
+        return _minutes / Distance();
     }
 }
