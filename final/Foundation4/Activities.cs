@@ -7,6 +7,6 @@ abstract class Activities {
     public abstract double Pace(double minutes);
     public string GetSummary()
     {
-        return $"";
+        return $" ";
     }
 }
