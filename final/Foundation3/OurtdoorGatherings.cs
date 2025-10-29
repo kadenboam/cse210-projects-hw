@@ -1,8 +1,14 @@
 class OutdoorGatherings : Events {
     private string _weather;
 
-    public void DisplayOutdoorGathering()
+   public OutdoorGatherings(string eventTitle, string description, string date, int time, string weather) : base(eventTitle, description, date, time)
     {
-        DisplayEvent();
+        _weather = weather;
+    }
+
+
+    public string DisplayOutdoorGathering(string address)
+    {
+        return DisplayEvent(address) + $", Weather: {_weather}";
     }
 }

@@ -3,11 +3,18 @@ abstract class Events {
     protected string _description;
     protected string _date;
     protected int _time;
-    protected string _address;
 
-    public string DisplayEvent()
+    public Events(string eventTitle, string description, string date, int time)
     {
-        return $"Event: {_eventTitle}, {_description}, Date: {_time} on {_date} at {_address}";
+        _eventTitle = eventTitle;
+        _description = description;
+        _date = date;
+        _time = time;
+    }
+
+    public string DisplayEvent(string address)
+    {
+        return $"Event: {_eventTitle}, {_description}, Date: {_time} on {_date} at {address}";
     }
     public void DisplaySimple(string eventType)
     {

@@ -7,7 +7,7 @@ class Running : Activities {
     }
     public override double Speed(double minutes)
     {
-        return Distance(_distance)/minutes;
+        return (Distance(_distance)/minutes) * 60;
     }
     public override double Pace(double _minutes)
     {

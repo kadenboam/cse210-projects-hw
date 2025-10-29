@@ -3,8 +3,8 @@ abstract class Activities {
     protected double _minutes;
 
     public abstract double Distance(double theDistance);
-    public abstract double Speed(double _minutes);
-    public abstract double Pace(double _minutes);
+    public abstract double Speed(double minutes);
+    public abstract double Pace(double minutes);
     public string GetSummary()
     {
         return $"";
