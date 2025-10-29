@@ -1,6 +1,11 @@
 class Running : Activities {
     private double _distance;
 
+    public Running(double distance, string date, double minutes) : base(date, minutes)
+    {
+        _distance = distance;
+    }
+
     public override double Distance(double distance)
     {
         return _distance;

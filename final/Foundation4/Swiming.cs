@@ -1,6 +1,11 @@
 class Swiming : Activities{
     private double _numberOfLaps;
 
+    public Swiming(double numberOfLaps, string date, double minutes) : base(date, minutes)
+    {
+        _numberOfLaps = numberOfLaps;
+    }
+
     public override double Distance(double numberOfLaps)
     {
         return _numberOfLaps * 50 / 1000;
